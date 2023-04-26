@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "iptv"
+authors = ["Alexander Kosolapov <kosolapov1976@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+uvicorn = "^0.21.1"
+fastapi = "^0.95.1"
+sqlalchemy = "^1.4.41"
+sqlmodel = "^0.0.8"
+asyncpg = "^0.27.0"
+psycopg2 = "^2.9.6"
+pydantic = "^1.10.7"
+alembic = "^1.10.4"
+python-dotenv = "^1.0.0"
+pathlib = "^1.0.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start= "app.main:start"
