@@ -12,6 +12,11 @@ class UsersRepository(BaseRepo):  # определение класса UsersRep
     model = Users  # установка модели на класс Users
 
     @staticmethod
+    async def find_by_id(user_id: int):
+        query = select(Users).where(Users.id == user_id)
+        return (await db.execute(query)).scalar_one_or_none()
+
+    @staticmethod
     async def find_by_nick_name(
             nick_name: str):  # определение статического метода find_by_username, принимающего строку username
         query = select(Users).where(

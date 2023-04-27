@@ -1,8 +1,8 @@
-"""Initial migration
+"""Initial migrations
 
-Revision ID: 286fcfdecb3e
+Revision ID: 37cb935d2c22
 Revises: 
-Create Date: 2023-04-26 17:14:47.138317
+Create Date: 2023-04-27 23:16:24.466027
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision = '286fcfdecb3e'
+revision = '37cb935d2c22'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,11 +50,11 @@ def upgrade() -> None:
     op.create_table('user_role',
     sa.Column('modified_at', sa.DateTime(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('users_id', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('user_id', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('role_id', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
-    sa.ForeignKeyConstraint(['users_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('users_id', 'role_id')
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('user_id', 'role_id')
     )
     # ### end Alembic commands ###
 

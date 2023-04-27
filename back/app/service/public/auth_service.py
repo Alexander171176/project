@@ -22,18 +22,18 @@ class AuthService:
     async def register_service(register: RegisterSchema):
         # Генерация идентификаторов для зарегистрированного пользователя
         _profile_id = str(uuid4())
-        _users_id = str(uuid4())
+        _user_id = str(uuid4())
 
         # Создание объектов Person и Users для добавления в БД
         _profile = Profile(id=_profile_id, user_name=register.user_name, phone_number=register.phone_number)
 
-        _users = Users(id=_users_id, nick_name=register.nick_name, email=register.email,
+        _users = Users(id=_user_id, nick_name=register.nick_name, email=register.email,
                        password=pwd_context.hash(register.password),
                        profile_id=_profile_id)
 
         # Установка роли "user" для нового пользователя
         _role = await RoleRepository.find_by_role_name("user")
-        _users_role = UsersRole(users_id=_users_id, role_id=_role.id)
+        _users_role = UsersRole(users_id=_user_id, role_id=_role.id)
 
         # Проверка, не используется ли уже имя пользователя или электронный адрес
         _nick_name = await UsersRepository.find_by_nick_name(register.nick_name)

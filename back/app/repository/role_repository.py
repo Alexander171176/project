@@ -3,6 +3,7 @@ from sqlalchemy.future import select  # импорт функции select из 
 
 from app.core.config import db, commit_rollback  # импорт переменных db и commit_rollback из модуля app.config
 from app.model.role import Role  # импорт класса Role из модуля app.model.role
+from app.model.user_role import UsersRole
 from app.repository.base_repository import BaseRepo  # импорт класса BaseRepo из модуля app.repository.base_repo
 
 
@@ -33,3 +34,13 @@ class RoleRepository(BaseRepo):  # объявление класса RoleReposit
             role_name: List[Role]):  # объявление статического асинхронного метода create_list с параметром role_name
         db.add_all(role_name)  # добавление списка объектов Role в сессию БД
         await commit_rollback()  # сохранение изменений в БД или откат транзакции при возникновении исключения
+
+    @staticmethod
+    async def find_by_user_id(user_id: int):
+        query = (
+            select(Role)
+            .join(UsersRole, Role.id == UsersRole.role_id)
+            .where(UsersRole.user_id == user_id)
+        )
+        return (await db.execute(query)).scalars().all()
+
