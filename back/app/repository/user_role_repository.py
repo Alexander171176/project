@@ -1,6 +1,6 @@
-from app.model.user_role import UsersRole
+from app.model.user_role import UserRole
 from app.repository.base_repository import BaseRepo
 
 
-class UsersRoleRepository(BaseRepo):
-    model = UsersRole
+class UserRoleRepository(BaseRepo):
+    model = UserRole

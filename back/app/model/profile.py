@@ -12,7 +12,7 @@ class Profile(SQLModel, TimeMixin, table=True):
     user_name: str  # поле для имени пользователя
     phone_number: str  # поле для номера телефона пользователя
 
-    users: Optional["Users"] = Relationship(  # определяем отношение с моделью Users
+    user: Optional["User"] = Relationship(  # определяем отношение с моделью User
         sa_relationship_kwargs={'uselist': False},
         back_populates="profile")  # указываем аргументы для отношения и свойство обратной ссылки для связи модели
-    # Profile и Users
+    # Profile и User
