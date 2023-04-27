@@ -1,8 +1,14 @@
 import uvicorn  # импортируем модуль для запуска приложения
 from fastapi import FastAPI  # импортируем FastAPI
+from fastapi.middleware.cors import CORSMiddleware  # импортируем Middleware для CORS
 from app.core.config import db  # импортируем экземпляр базы данных
 from app.service.public.auth_service import generate_role  # импортируем функцию для генерации ролей
 
+
+# origins - список источников, с которых можно получать запросы
+origins = [
+    "http://localhost:3000"
+]
 
 # функция инициализации приложения
 def init_app():
@@ -13,6 +19,15 @@ def init_app():
         title="IPTV",
         description="MicroService",
         version="1",
+    )
+    
+    # добавляем Middleware для CORS
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"]
     )
 
     # функция-обработчик, вызываемая при запуске приложения
