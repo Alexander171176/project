@@ -5,7 +5,7 @@ from sqlalchemy.future import select
 
 from app.core.config import db, commit_rollback  # импорт объектов db и commit_rollback из модуля app.config
 from app.model.users import Users  # импорт класса Users из модуля app.model.users
-from app.repository.base_repo import BaseRepo  # импорт класса BaseRepo из модуля app.repository
+from app.repository.base_repository import BaseRepo  # импорт класса BaseRepo из модуля app.repository
 
 
 class UsersRepository(BaseRepo):  # определение класса UsersRepository, наследующегося от класса BaseRepo

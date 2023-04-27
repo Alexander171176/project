@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, Security
 from app.schema.response_schema import ResponseSchema
 
 # Импортируем классы JWTBearer и JWTRepo из модуля app.repository.auth_repo
-from app.repository.auth_repo import JWTBearer, JWTRepo
+from app.repository.auth_repository import JWTBearer, JWTRepo
 
 # Импортируем класс HTTPAuthorizationCredentials из модуля fastapi.security
 from fastapi.security import HTTPAuthorizationCredentials

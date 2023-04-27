@@ -22,7 +22,7 @@ export default function NavigationLinks() {
     "block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 dark:hover:text-white border-b-2 border-white hover:border-orange-600";
 
   return (
-    <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20" id="nav-content">
+    <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 z-20" id="nav-content">
       <ul className="list-reset lg:flex flex-1 items-center px-4 md:px-0 justify-end">
 
         {links.map((link) => (
