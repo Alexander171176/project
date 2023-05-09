@@ -1,51 +1,50 @@
-from fastapi import Depends, HTTPException, APIRouter
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import APIRouter, Depends, HTTPException, Security
 
-from app.main import app
-from app.model.role import Role
-from app.model.user import User
-from app.model.user_role import UserRole
-from app.repository.role_repository import RoleRepository
-from app.repository.user_role_repository import UserRoleRepository
-from app.repository.user_repository import UserRepository
-from app.repository.auth_repository import JWTRepo
+from app.schema.user_role_request_schema import UserRoleRequestSchema
+from app.schema.response_schema import ResponseSchema
+from app.service.admin.users_service import UserService
 
-# Создаем объект router класса APIRouter с префиксом и тегом
-router = APIRouter(prefix="/admin", tags=['Dashboard'])
+from app.repository.auth_repository import JWTBearer, JWTRepo
+from fastapi.security import HTTPAuthorizationCredentials
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+router = APIRouter(
+    prefix="/admin",
+    tags=['Администратор'],
+    dependencies=[Depends(JWTBearer())]
+)
 
 
-async def get_user(current_user: User = Depends(JWTRepo().decode)):
-    return current_user
+@router.get("/users", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_user_list(credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
+    token = JWTRepo.extract_token(credentials)
+    role = await UserService.get_current_user_role(token)
+    if role != "admin":
+        raise HTTPException(status_code=403, detail="Недостаточно прав для просмотра пользователей")
+
+    users = await UserService.get_user_list()
+    return ResponseSchema(detail="Успешное получение данных!", result=users)
 
 
-async def get_role_by_user(user_id: str):
-    role = await RoleRepository.find_by_user_id(user_id)
-    if not role:
-        raise HTTPException(status_code=400, detail="User has no role")
-    return role
+@router.get("/users/{email}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_user_by_email(email: str, credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
+    token = JWTRepo.extract_token(credentials)
+    role = await UserService.get_current_user_role(token)
+    if role != "admin":
+        raise HTTPException(status_code=403, detail="Недостаточно прав для просмотра пользователя")
+
+    user = await UserService.get_user_by_email(email)
+    return ResponseSchema(detail="Успешное получение данных!", result=user)
 
 
-async def requires(role: str):
-    async def _requires(current_user: User = Depends(JWTRepo().decode), role: Role = Depends(get_role_by_user)):
-        if role.role_name != "admin" and role.role_name != "user":
-            raise HTTPException(status_code=403, detail="Forbidden")
-        return current_user
+@router.put("/users/{email}/role", response_model=ResponseSchema, response_model_exclude_none=True)
+async def update_user_role(email: str,
+                           role: UserRoleRequestSchema,
+                           credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
+    token = JWTRepo.extract_token(credentials)
+    user_role = await UserService.get_current_user_role(token)
+    if user_role != "admin":
+        raise HTTPException(status_code=403, detail="Недостаточно прав для изменения роли пользователя")
 
-    return _requires
+    await UserService.update_user_role(email, role.role_id)
 
-
-@app.get("/users")
-async def get_users(current_user: User = Depends(get_user), role: Role = Depends(get_role_by_user)):
-    if role.role_name != "admin":
-        raise HTTPException(status_code=403, detail="Forbidden")
-    return {"users": "All users"}
-
-
-@app.get("/user/{user_id}")
-async def get_user_by_id(user_id: str, current_user: User = Depends(get_user), role: Role = Depends(get_role_by_user)):
-    if role.role_name != "admin" and current_user.id != user_id:
-        raise HTTPException(status_code=403, detail="Forbidden")
-    user = await UserRepository.find_by_id(user_id)
-    return {"user": user}
+    return ResponseSchema(detail="Роль пользователя успешно изменена!", result=None)

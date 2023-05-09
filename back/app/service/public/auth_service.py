@@ -2,8 +2,8 @@ from fastapi import HTTPException
 from app.repository.auth_repository import JWTRepo
 from app.repository.profile_repository import ProfileRepository
 from app.repository.role_repository import RoleRepository
-from app.repository.user_role_repository import UserRoleRepository
 from app.repository.user_repository import UserRepository
+from app.repository.user_role_repository import UserRoleRepository
 from app.schema.register_schema import RegisterSchema
 from app.schema.login_schema import LoginSchema
 from app.schema.forgot_schema import ForgotSchema

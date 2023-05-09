@@ -1,7 +1,8 @@
 # Импортируем классы APIRouter, Depends, Security из модуля fastapi
-from fastapi import APIRouter, Depends, Security
+from fastapi import APIRouter, Depends, Security, HTTPException
 
 # Импортируем схемы ответов, используемые в маршрутах
+from app.model import user_role
 from app.schema.response_schema import ResponseSchema
 
 # Импортируем классы JWTBearer и JWTRepo из модуля app.repository.auth_repo
@@ -33,3 +34,4 @@ async def get_user_profile(credentials: HTTPAuthorizationCredentials = Security(
     token = JWTRepo.extract_token(credentials)
     result = await ProfileService.get_user_profile(token['email'])
     return ResponseSchema(detail="Успешное получение данных!", result=result)
+

@@ -4,11 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware  # импортируем Mid
 from app.core.config import db  # импортируем экземпляр базы данных
 from app.service.public.auth_service import generate_role  # импортируем функцию для генерации ролей
 
-
 # origins - список источников, с которых можно получать запросы
 origins = [
     "http://localhost:3000"
 ]
+
 
 # функция инициализации приложения
 def init_app():
@@ -20,7 +20,7 @@ def init_app():
         description="MicroService",
         version="1",
     )
-    
+
     # добавляем Middleware для CORS
     app.add_middleware(
         CORSMiddleware,
@@ -44,6 +44,10 @@ def init_app():
 
     app.include_router(authentication.router)  # регистрируем контроллер аутентификации
     app.include_router(profile.router)  # регистрируем контроллер пользователей
+
+    from app.controller.admin import users
+
+    app.include_router(users.router)
 
     return app
 

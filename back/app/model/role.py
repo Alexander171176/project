@@ -1,5 +1,5 @@
 from typing import List, Optional  # импортируем типы данных List и Optional из модуля typing
-from sqlmodel import Relationship, SQLModel, Field
+from sqlmodel import Relationship, SQLModel, Field, Session
 # импортируем класс Relationship, SQLModel и Field из модуля sqlmodel
 from app.model.mixins import TimeMixin  # импортируем класс TimeMixin из модуля app.model.mixins
 from app.model.user_role import UserRole  # импортируем класс UsersRole из модуля app.model.user_role
@@ -20,3 +20,7 @@ class Role(SQLModel, TimeMixin, table=True):
     # экземпляры класса Users, устанавливаем аргумент back_populates для указания отношения многие-ко-многим
     # с классом Users и link_model для указания промежуточной таблицы UserRole,
     # которая связывает таблицы "user" и "role".
+
+    def delete(self, session: Session):
+        session.delete(self)
+        session.commit()

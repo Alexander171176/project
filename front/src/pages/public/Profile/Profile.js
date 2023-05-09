@@ -93,7 +93,7 @@ export default function Profile() { // экспорт по умолчанию ф
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
-                  {user.nick_name}
+                  {user.nick_name} 
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                   {user.user_name}
@@ -103,6 +103,12 @@ export default function Profile() { // экспорт по умолчанию ф
                   </div>
                   <div className="mb-2 text-blueGray-600">
                     Электронная почта: {user.email}
+                  </div>
+                  <div className="mb-2 text-blueGray-600">
+                    Идентификатор: {user.id}
+                  </div>
+                  <div className="mb-2 text-blueGray-600">
+                    Роль пользователя: {user.role_name}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
