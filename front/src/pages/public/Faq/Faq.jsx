@@ -1,7 +1,7 @@
-import { useEffect } from 'react'; // импортирование модуля useEffect из React
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header 
+import React, { useEffect } from 'react'; // импортирование модуля useEffect из React
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Faq() { // компонент страницы Вопросы и Ответы
+const Faq = () => { // компонент страницы Вопросы и Ответы
 
     useEffect(() => { // действия для состояния страницы 
         document.title = 'F.A.Q'; // установка заголовка страницы
@@ -128,3 +128,5 @@ export default function Faq() { // компонент страницы Вопр�
     );
 
 };
+
+export { Faq }

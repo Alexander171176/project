@@ -4,11 +4,11 @@ import { useNavigate, NavLink } from "react-router-dom"; // импортиров
 import axios from "axios"; // импортирование библиотеки axios для выполнения HTTP запросов
 import { toast } from "react-toastify"; // импортирование компонента toast из react-toastify для уведомлений пользователей
 
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header
-import AgreementModal from '../../../components/public/Modal/AgreementModal'; // импортирование модалки Пользовательского соглашения
-import ContractOfferModal from '../../../components/public/Modal/ContractOfferModal'; // импортирование модалки Договора оферты
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
+import {AgreementModal} from '../../../components/public/Modal/AgreementModal'; // импортирование модалки Пользовательского соглашения
+import { ContractOfferModal } from '../../../components/public/Modal/ContractOfferModal'; // импортирование модалки Договора оферты
 
-export default function Register(props) { // компонент страницы Регистрации пользователя со свойствами
+const Register = (props) => { // компонент страницы Регистрации пользователя со свойствами
 
     useEffect(() => { // действия для состояния страницы
         document.title = 'Регистрация'; // установка заголовка страницы
@@ -216,3 +216,5 @@ export default function Register(props) { // компонент страницы
     );
 
 };
+
+export { Register }

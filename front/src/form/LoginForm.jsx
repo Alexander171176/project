@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FiRefreshCw } from 'react-icons/fi';
 
-export default function Login(props) {  // экспорт компонента функции Login
+const Login = (props) => {  // экспорт компонента функции Login
 
   const handleReload = () => {
     window.location.reload();
@@ -141,3 +141,5 @@ export default function Login(props) {  // экспорт компонента �
     </React.Fragment>
   );
 }
+
+export { Login }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Transition } from "react-transition-group";
 
-export default function ContractOfferModal() {
+const ContractOfferModal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleModal = () => setIsOpen(!isOpen);
@@ -574,3 +574,4 @@ export default function ContractOfferModal() {
     );
 };
 
+export { ContractOfferModal }

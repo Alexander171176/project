@@ -7,9 +7,9 @@ import { toast } from "react-toastify"; // импортирование комп
 import ReCAPTCHA from 'react-google-recaptcha'; // импортирование библиотеки google recaptcha
 import { FiRefreshCw } from 'react-icons/fi'; // импортирование иконки reload из библиотеки иконок
 
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Login(props) { // компонент страницы Логина со свойствами
+const Login = (props) => { // компонент страницы Логина со свойствами
 
   useEffect(() => { // действия для состояния страницы
     document.title = 'Вход в систему'; // установка заголовка страницы
@@ -177,3 +177,5 @@ export default function Login(props) { // компонент страницы Л
   );
 
 };
+
+export { Login }

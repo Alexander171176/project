@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useLocalStorage } from "./../../../utils/useLocalStorage"
-import detectDarkMode from '../../../utils/detectDarkMode';
+import React, { useEffect } from 'react';
+import { useLocalStorage } from "../../../utils/useLocalStorage"
+import {detectDarkMode } from '../../../utils/detectDarkMode';
 
 import sun from './sun.svg';
 import moon from './moon.svg';
@@ -43,4 +43,4 @@ const BtnDarkMode = () => {
 	);
 };
 
-export default BtnDarkMode;
+export { BtnDarkMode }

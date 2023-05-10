@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import Header from '../../../components/public/Header/Header';
+import React, { useEffect } from 'react';
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Contacts() {
+const Agreement = () => {
 
     useEffect(() => {
         document.title = 'Пользовательское соглашение'; // установка заголовка страницы
@@ -216,3 +216,5 @@ export default function Contacts() {
     );
 
 };
+
+export { Agreement }

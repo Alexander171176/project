@@ -4,7 +4,7 @@ import React, { useState } from "react"; // Импорт React и useState из 
 import axios from "axios"; // Импорт библиотеки axios для работы с HTTP-запросами
 import { toast } from "react-toastify"; // Импорт библиотеки react-toastify для уведомлений
 
-export default function Forgot(props) { // Экспорт компонента Forgot по умолчанию
+const Forgot = (props) => { // Экспорт компонента Forgot по умолчанию
 
   // обработчиках нажатий для кнопки войти
   const handleLoginClick = () => {
@@ -101,3 +101,5 @@ export default function Forgot(props) { // Экспорт компонента F
     </React.Fragment>
   );
 }
+
+export { Forgot }

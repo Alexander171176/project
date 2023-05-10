@@ -1,7 +1,7 @@
-import { useEffect } from 'react'; // импортирование модуля useEffect из React
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header 
+import React, { useEffect } from 'react'; // импортирование модуля useEffect из React
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Contract() { // компонент страницы Договор оферты
+const Contract = () => { // компонент страницы Договор оферты
 
     useEffect(() => { // действия для состояния страницы 
         document.title = 'Договор оферты'; // установка заголовка страницы
@@ -462,3 +462,5 @@ export default function Contract() { // компонент страницы До
     );
 
 };
+
+export { Contract }

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import Header from '../../../components/public/Header/Header';
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Home() {
+const Home = () => {
 
     useEffect(() => {
         document.title = 'Главная'; // установка заголовка страницы
@@ -90,3 +90,4 @@ export default function Home() {
 
 };
 
+export { Home }

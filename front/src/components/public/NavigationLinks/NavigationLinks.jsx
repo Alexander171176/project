@@ -11,7 +11,7 @@ const links = [
   { path: "/auth", text: "Войти" },
 ];
 
-export default function NavigationLinks() {
+const NavigationLinks = () => {
 
   // Стили для активной ссылки
   const activeLink =
@@ -53,3 +53,5 @@ export default function NavigationLinks() {
     </div>
   );
 }
+
+export { NavigationLinks }

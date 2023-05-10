@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"; // импортирование 
 import axios from "axios"; // импортирование библиотеки axios для выполнения HTTP запросов
 import { toast } from "react-toastify"; // импортирование компонента toast из react-toastify для уведомлений пользователей
 
-export default function Register(props) { // экспорт по умолчанию компонента Register вместе с его свойствами
+const Register = (props) => { // экспорт по умолчанию компонента Register вместе с его свойствами
 
   // обработчиках нажатий для кнопки войти
   const handleLoginClick = () => {
@@ -160,3 +160,5 @@ export default function Register(props) { // экспорт по умолчан�
     </React.Fragment>
   );
 }
+
+export { Register }

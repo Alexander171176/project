@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 // Импортируем компоненты форм
-import Forgot from "../../../form/ForgotForm";
-import Login from "../../../form/LoginForm";
-import Register from "../../../form/RegisterForm";
-import Profile from "../Profile/Profile"
+import { Forgot } from "../../../form/ForgotForm";
+import { Login } from "../../../form/LoginForm";
+import { Register } from "../../../form/RegisterForm";
+import { Profile } from "../Profile/Profile"
 
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
 
 // Основной компонент приложения
-function Auth() {
+const Auth = () => {
   // Состояние страницы, которую мы показываем пользователю
   const [page, setPage] = useState("login");
   // Состояние токена авторизации
@@ -68,4 +68,4 @@ function Auth() {
 }
 
 // Экспортируем компонент по умолчанию
-export default Auth;
+export { Auth }

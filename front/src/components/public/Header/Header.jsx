@@ -1,8 +1,8 @@
 import React from "react";
-import NavigationLinks from "./../NavigationLinks/NavigationLinks";
-import BtnDarkMode from "../BtnDarkMode/BtnDarkMode";
+import { NavigationLinks } from "../NavigationLinks/NavigationLinks";
+import { BtnDarkMode } from "../BtnDarkMode/BtnDarkMode";
 
-export default function Header() {
+const Header = () => {
   return (
     <header className="z-10 py-1 bg-white shadow-md dark:bg-gray-800 fixed top-0 left-0 right-0">
       <nav className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
@@ -42,3 +42,5 @@ export default function Header() {
     </header>
   );
 };
+
+export { Header }

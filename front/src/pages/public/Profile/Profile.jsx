@@ -1,39 +1,33 @@
-/* eslint-disable react-hooks/exhaustive-deps */ // отключение правила линтера
-import React, { useEffect, useState } from "react"; // импортирование React, useEffect, useState
-import axios from "axios"; // импортирование axios
-import { toast } from "react-toastify"; // импортирование toast уведомлений
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-import Header from '../../../components/public/Header/Header'; // импортирование блока Header
+import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-export default function Profile() { // экспорт по умолчанию функции Home
-  const [user, setUser] = useState({}); // определение состояния user и setUser с начальным значением {}
+const Profile = () => {
+  const [user, setUser] = useState({});
 
-  useEffect(() => { // эффект для загрузки пользовательских данных с сервера
-    // получить токен из локального хранилища
-    const auth_token = localStorage.getItem("auth_token");
-    const auth_token_type = localStorage.getItem("auth_token_type");
-    const token = auth_token_type + " " + auth_token;
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const auth_token = localStorage.getItem("auth_token");
+        const auth_token_type = localStorage.getItem("auth_token_type");
+        const token = `${auth_token_type} ${auth_token}`;
+        const response = await axios.get("http://localhost:8888/account/", {
+          headers: { Authorization: token },
+        });
+        setUser(response.data.result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    //  извлечь данные из пользовательского api 
-    axios
-      .get("http://localhost:8888/account/", {
-        headers: { Authorization: token }, // заголовок с токеном авторизации
-      })
-      .then((response) => {
-        console.log(response); // вывести ответ сервера в консоль
-        setUser(response.data.result); // установить данные пользователя в состояние
-      })
-      .catch((error) => {
-        console.log(error); // вывести ошибку в консоль
-      });
-  }, []); // передача пустого массива зависимостей для того, чтобы эффект сработал только один раз при загрузке компонента
+    loadUser();
+  }, []);
 
-  const onClickHandler = (event) => {
-    event.preventDefault();
-  
+  const logout = () => {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("auth_token_type");
-  
     toast("Успешно !", {
       position: "top-right",
       autoClose: 5000,
@@ -43,11 +37,9 @@ export default function Profile() { // экспорт по умолчанию ф
       draggable: true,
       progress: undefined,
     });
-  
-    // перенаправить пользователя на главную страницу
     window.location.href = "/";
   };
-  
+
 
   // возврат JSX разметки
   return (
@@ -93,10 +85,10 @@ export default function Profile() { // экспорт по умолчанию ф
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
-                  {user.nick_name} 
+                    {user.nick_name}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                  {user.user_name}
+                    {user.user_name}
                   </div>
                   <div className="mb-2 text-blueGray-600 mt-10">
                     Номер телефона: {user.phone_number}
@@ -116,10 +108,9 @@ export default function Profile() { // экспорт по умолчанию ф
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
                         <button
-                          onClick={(event) => {
-                            onClickHandler(event);
-                          }}
-                          className="py-1 w-32 border text-xl text-black outline-none bg-gray-50 hover:bg-gray-100 active:bg-gray-200"
+                          className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={logout}
                         >
                           Выйти
                         </button>
@@ -135,3 +126,5 @@ export default function Profile() { // экспорт по умолчанию ф
     </>
   );
 }
+
+export { Profile }
