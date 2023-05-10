@@ -16,24 +16,32 @@ import { Profile } from "./pages/public/Profile/Profile";
 
 import { Users } from "./pages/admin/Users/Users";
 
+import { PrivateRoute } from "./utils/privateRouter";
+
 const App = () => {
   return (
     <div className="App dark:bg-gray-900">
       <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/contacts" element={<Contacts/>}/>
-        <Route exact path="/faq" element={<Faq/>}/>
-        <Route exact path="/agreement" element={<Agreement/>}/>
-        <Route exact path="/contract" element={<Contract/>}/>
-        <Route exact path="/auth" element={<Auth/>}/>
-        <Route exact path="/register" element={<Register/>}/>
-        <Route exact path="/login" element={<Login/>}/>
-        <Route exact path="/forgot" element={<Forgot/>}/>
-        <Route exact path="/profile" element={<Profile/>}/>
-        <Route exact path="/users" element={<Users/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/contacts" element={<Contacts/>}/>
+        <Route path="/faq" element={<Faq/>}/>
+        <Route path="/agreement" element={<Agreement/>}/>
+        <Route path="/contract" element={<Contract/>}/>
+        <Route path="/auth" element={<Auth/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/forgot" element={<Forgot/>}/>
+
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile/>}/>
+        </Route>
+
+        <Route path="/admin/users" element={<Users/>}/>
+
       </Routes>
+
     </div>
   );
 };
 
-export {App}
+export { App }
