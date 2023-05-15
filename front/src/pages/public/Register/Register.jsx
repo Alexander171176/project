@@ -4,8 +4,7 @@ import { useNavigate, NavLink } from "react-router-dom"; // импортиров
 import axios from "axios"; // импортирование библиотеки axios для выполнения HTTP запросов
 import { toast } from "react-toastify"; // импортирование компонента toast из react-toastify для уведомлений пользователей
 
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
-import {AgreementModal} from '../../../components/public/Modal/AgreementModal'; // импортирование модалки Пользовательского соглашения
+import { AgreementModal } from '../../../components/public/Modal/AgreementModal'; // импортирование модалки Пользовательского соглашения
 import { ContractOfferModal } from '../../../components/public/Modal/ContractOfferModal'; // импортирование модалки Договора оферты
 
 const Register = (props) => { // компонент страницы Регистрации пользователя со свойствами
@@ -101,7 +100,6 @@ const Register = (props) => { // компонент страницы Регис�
 
     return (
         <>
-            <Header /> {/* блок Header */}
 
             <h1 className="pt-20 text-2xl tracking-wide font-extrabold text-blue-600 dark:text-white">Страница регистрации</h1>
 
@@ -154,22 +152,22 @@ const Register = (props) => { // компонент страницы Регис�
                                             placeholder="Ваш Email"
                                             className="block text-sm py-1.5 px-2 rounded-md w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
                                             onChange={(e) => onChangeForm('email', e)}
-                                            required 
+                                            required
                                         /> {/* обработчик поля email */}
                                         <input
                                             type="password"
                                             placeholder="Придумайте Пароль"
                                             className="block text-sm py-1.5 px-2 rounded-md w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
-                                            onChange={(e) => onChangeForm('password', e)} 
-                                            required 
+                                            onChange={(e) => onChangeForm('password', e)}
+                                            required
                                         /> {/* обработчик поля пароля */}
                                         <input
                                             type="password"
                                             placeholder="Повторите Пароль"
                                             className="block text-sm py-1.5 px-2 rounded-md w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
-                                            onChange={(e) => onChangeForm('password_confirm', e)} 
-                                            required 
-                                        /> {/* обработчик поля повтора пароля */} 
+                                            onChange={(e) => onChangeForm('password_confirm', e)}
+                                            required
+                                        /> {/* обработчик поля повтора пароля */}
                                     </div>
                                     <div className="text-center mt-6">
                                         <button type="submit"
@@ -186,7 +184,7 @@ const Register = (props) => { // компонент страницы Регис�
                                             type="checkbox"
                                             className="text-blue-600 form-checkbox focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray"
                                             checked={agreementChecked}
-                                            onChange={handleAgreementChecked} 
+                                            onChange={handleAgreementChecked}
                                             required
                                         /> {/* обработчик включения чекбокса Соглашений */}
                                         <span className="ml-2">

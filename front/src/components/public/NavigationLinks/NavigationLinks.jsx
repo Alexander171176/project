@@ -8,7 +8,7 @@ const links = [
   { path: "/agreement", text: "Пользовательское соглашение" },
   { path: "/contract", text: "Договор оферты" },
   { path: "/register", text: "Регистрация" },
-  { path: "/auth", text: "Войти" },
+  { path: "/auth", text: "Аккаунт" },
 ];
 
 const NavigationLinks = () => {

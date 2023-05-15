@@ -1,14 +1,13 @@
-import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
-const PublicLayout = ({ children }) => {
+const PublicLayout = () => {
   return (
-    <div>
+    <>
       <Header />
-      <main>{children}</main>
-      <footer>Footer</footer>
-    </div>
+      <Outlet />
+    </>
   );
 };
 

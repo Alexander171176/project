@@ -4,8 +4,6 @@ import { useNavigate, NavLink } from "react-router-dom"; // импортиров
 import axios from "axios"; // импортирование библиотеки axios для выполнения HTTP запросов
 import { toast } from "react-toastify"; // импортирование компонента toast из react-toastify для уведомлений пользователей
 
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
-
 const Forgot = (props) => { // компонент страницы Восстановления пароля со свойствами
 
     useEffect(() => { // действия для состояния страницы 
@@ -65,7 +63,6 @@ const Forgot = (props) => { // компонент страницы Восста�
 
     return (
         <>
-            <Header /> {/* блок Header */}
 
             <h1 className="pt-20 text-2xl tracking-wide font-extrabold text-blue-600 dark:text-white">Страница восстановления пароля</h1>
 

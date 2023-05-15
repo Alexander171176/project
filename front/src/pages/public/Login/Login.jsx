@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react"; // импортирование модуля React и useState хук и useEffect из React
 import { useNavigate, NavLink } from "react-router-dom"; // импортирование компонентов Link и useNavigate из react-router-dom
 
+
 import axios from "axios"; // импортирование библиотеки axios для выполнения HTTP запросов
 import { toast } from "react-toastify"; // импортирование компонента toast из react-toastify для уведомлений пользователей
 
 import ReCAPTCHA from 'react-google-recaptcha'; // импортирование библиотеки google recaptcha
 import { FiRefreshCw } from 'react-icons/fi'; // импортирование иконки reload из библиотеки иконок
-
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
 const Login = (props) => { // компонент страницы Логина со свойствами
 
@@ -69,7 +68,12 @@ const Login = (props) => { // компонент страницы Логина �
         window.location.reload();
       }, 1000);
 
-      navigate('/profile'); // перейти на страницу профиля после успешной авторизации
+      // Проверяем успешность авторизации и перенаправляем на главную страницу 
+      if (response.data.result.token_type) {
+        navigate("/");
+      } else {
+        toast.error(response.data.message);
+      }
 
       // console.log(response);
 
@@ -81,7 +85,6 @@ const Login = (props) => { // компонент страницы Логина �
 
   return (
     <>
-      <Header /> {/* блок Header */}
 
       <h1 className="pt-20 text-2xl tracking-wide font-extrabold text-blue-600 dark:text-white">Страница авторизации</h1>
 
@@ -93,13 +96,13 @@ const Login = (props) => { // компонент страницы Логина �
                 alt="image"
                 aria-hidden="true"
                 className="object-cover w-full h-full dark:hidden"
-                src={process.env.PUBLIC_URL + '/img/login-office.jpeg'} 
+                src={process.env.PUBLIC_URL + '/img/login-office.jpeg'}
               /> {/* папка public */}
               <img
                 alt="image"
                 aria-hidden="true"
                 className="hidden object-cover w-full h-full dark:block"
-                src={process.env.PUBLIC_URL + '/img/login-office-dark.jpeg'} 
+                src={process.env.PUBLIC_URL + '/img/login-office-dark.jpeg'}
               /> {/* папка public */}
             </div>
             <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
@@ -116,13 +119,13 @@ const Login = (props) => { // компонент страницы Логина �
                       placeholder="Email"
                       className="block text-sm py-1.5 px-2 rounded-md w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
                       onChange={(e) => onChangeForm('email', e)}
-                      required 
+                      required
                     /> {/* обработчик поля email */}
                     <input
                       type="password"
                       placeholder="Пароль"
                       className="block text-sm py-1.5 px-2 rounded-md w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
-                      onChange={(e) => onChangeForm('password', e)} 
+                      onChange={(e) => onChangeForm('password', e)}
                       required
                     /> {/* обработчик поля пароль */}
                   </div>

@@ -1,8 +1,5 @@
-import React from "react/jsx-runtime";
-import { Route, Routes } from "react-router-dom"; 
-
-import "./App.css";
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/public/Home/Home";
 import { Contacts } from "./pages/public/Contacts/Contacts";
 import { Faq } from "./pages/public/Faq/Faq";
@@ -13,35 +10,38 @@ import { Register } from "./pages/public/Register/Register";
 import { Login } from "./pages/public/Login/Login";
 import { Forgot } from "./pages/public/Forgot/Forgot";
 import { Profile } from "./pages/public/Profile/Profile";
+import { PublicLayout } from "./components/layouts/PublicLayout/PublicLayout";
 
-import { Users } from "./pages/admin/Users/Users";
+import "./App.css";
 
-import { PrivateRoute } from "./utils/privateRouter";
+// HOC проверяет аутентификацию пользователя
+import { RequireAuth } from "./hoc/RequireAuth"; 
+// контекстный компонент, который предоставляет информацию об аутентификации (токен пользователя) через контекст
+import { AuthProvider } from "./hoc/AuthProvider"; 
 
 const App = () => {
   return (
     <div className="App dark:bg-gray-900">
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/contacts" element={<Contacts/>}/>
-        <Route path="/faq" element={<Faq/>}/>
-        <Route path="/agreement" element={<Agreement/>}/>
-        <Route path="/contract" element={<Contract/>}/>
-        <Route path="/auth" element={<Auth/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/forgot" element={<Forgot/>}/>
-
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile/>}/>
-        </Route>
-
-        <Route path="/admin/users" element={<Users/>}/>
-
-      </Routes>
-
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<PublicLayout />}>
+            <Route index element={<Home />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="faq" element={<Faq />} />
+            <Route path="agreement" element={<Agreement />} />
+            <Route path="contract" element={<Contract />} />
+            <Route path="auth" element={<Auth />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="forgot" element={<Forgot />} />
+            <Route path="profile" element={
+              <RequireAuth><Profile /></RequireAuth>
+            } />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </div>
   );
 };
 
-export { App }
+export { App };

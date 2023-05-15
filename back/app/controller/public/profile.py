@@ -14,6 +14,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 # Импортируем класс UserService из модуля app.service.users
 from app.service.public.profile import ProfileService
 
+
 # Создаем объект router класса APIRouter с префиксом "/account", тегом "Профиль"
 # и зависимостью от класса JWTBearer для аутентификации пользователя
 router = APIRouter(

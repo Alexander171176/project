@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
-
 const Profile = () => {
   const [user, setUser] = useState({});
 
@@ -44,8 +42,6 @@ const Profile = () => {
   // возврат JSX разметки
   return (
     <>
-
-      <Header /> {/* блок Header */}
 
       <h1 className="pt-20 text-2xl tracking-tight font-extrabold text-fuchsia-600 dark:text-white">Страница профиля пользователя</h1>
 

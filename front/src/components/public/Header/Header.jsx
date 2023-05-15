@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { NavigationLinks } from "../NavigationLinks/NavigationLinks";
 import { BtnDarkMode } from "../BtnDarkMode/BtnDarkMode";
 
@@ -8,12 +9,14 @@ const Header = () => {
       <nav className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <div className="w-full container mx-auto flex flex-wrap items-center mt-0 pb-3 md:pb-0">
 
-          <img
-            src={process.env.PUBLIC_URL + "logo.png"}
-            width="48"
-            height="48"
-            alt="logo"
-          />
+          <Link to="/" className="mr-4">
+            <img
+              src={process.env.PUBLIC_URL + "logo.png"}
+              width="48"
+              height="48"
+              alt="logo"
+            />
+          </Link>
 
           <NavigationLinks />
 
@@ -43,4 +46,4 @@ const Header = () => {
   );
 };
 
-export { Header }
+export { Header };

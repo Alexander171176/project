@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
 const Agreement = () => {
 
@@ -9,7 +8,6 @@ const Agreement = () => {
 
     return (
         <>
-            <Header />
             <h1 className="pt-20 text-2xl tracking-tight font-extrabold text-fuchsia-600 dark:text-white">Пользовательское соглашение</h1>
 
 

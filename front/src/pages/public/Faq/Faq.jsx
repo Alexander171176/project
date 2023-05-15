@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'; // импортирование модуля useEffect из React
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
 const Faq = () => { // компонент страницы Вопросы и Ответы
 
@@ -9,8 +8,6 @@ const Faq = () => { // компонент страницы Вопросы и О�
 
     return (
         <>
-            <Header /> {/* блок Header */}
-            
             <section className="bg-white dark:bg-gray-900">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
                     <h1 className="mb-4 text-2xl tracking-tight font-extrabold text-fuchsia-600 dark:text-white">Часто задаваемые вопросы</h1>

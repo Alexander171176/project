@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
-
 const Home = () => {
 
     useEffect(() => {
@@ -10,7 +8,6 @@ const Home = () => {
 
     return (
         <>
-            <Header />
             <main className="profile-page mt-96">
                 <section className="relative block h-500-px"
                     style={{ top: '-360px' }} >

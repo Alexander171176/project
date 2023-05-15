@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'; // импортирование модуля useEffect из React
-import { Header } from '../../../components/public/Header/Header'; // импортирование блока Header 
 
 const Contacts = () => { // компонент страницы Договор оферты
 
@@ -9,7 +8,6 @@ const Contacts = () => { // компонент страницы Договор �
 
     return (
         <>
-            <Header /> {/* блок Header */}
 
             <h1 className="pt-20 text-2xl tracking-tight font-extrabold text-fuchsia-600 dark:text-white">Контакты</h1>
 
@@ -24,7 +22,7 @@ const Contacts = () => { // компонент страницы Договор �
                             backgroundImage: `url(${process.env.PUBLIC_URL}/img/banner-contacts.jpg)`,
                         }}
                     ></div>
-                    
+
                     <div className="container text-gray-800 px-4 md:px-12">
                         <div className="block rounded-lg shadow-lg py-10 md:py-12 px-2 md:px-6 bg-gray-100 dark:bg-gray-700"
                             style={{ marginTop: '-100px', backdropFilter: 'blur(30px)', background: 'hsla(0, 0%, 100%, 0.8)' }}
